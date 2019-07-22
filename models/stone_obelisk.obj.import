@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/stone_obelisk.obj-dcec2688989034a96366c81d91e1f1c3.mesh"
+
+[deps]
+
+files=[ "res://.import/stone_obelisk.obj-dcec2688989034a96366c81d91e1f1c3.mesh" ]
+
+source_file="res://models/stone_obelisk.obj"
+dest_files=[ "res://.import/stone_obelisk.obj-dcec2688989034a96366c81d91e1f1c3.mesh", "res://.import/stone_obelisk.obj-dcec2688989034a96366c81d91e1f1c3.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true

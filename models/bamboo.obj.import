@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/bamboo.obj-95c46d58b7d8836a905af5930678ed14.mesh"
+
+[deps]
+
+files=[ "res://.import/bamboo.obj-95c46d58b7d8836a905af5930678ed14.mesh" ]
+
+source_file="res://models/bamboo.obj"
+dest_files=[ "res://.import/bamboo.obj-95c46d58b7d8836a905af5930678ed14.mesh", "res://.import/bamboo.obj-95c46d58b7d8836a905af5930678ed14.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true

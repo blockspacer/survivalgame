@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/cliffBrown_top.obj-18d7f894e5b827d851a9650ca163a003.mesh"
+
+[deps]
+
+files=[ "res://.import/cliffBrown_top.obj-18d7f894e5b827d851a9650ca163a003.mesh" ]
+
+source_file="res://models/cliffBrown_top.obj"
+dest_files=[ "res://.import/cliffBrown_top.obj-18d7f894e5b827d851a9650ca163a003.mesh", "res://.import/cliffBrown_top.obj-18d7f894e5b827d851a9650ca163a003.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true

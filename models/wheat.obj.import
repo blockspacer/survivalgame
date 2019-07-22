@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/wheat.obj-790fbffea16ea9228388651e69dc6d60.mesh"
+
+[deps]
+
+files=[ "res://.import/wheat.obj-790fbffea16ea9228388651e69dc6d60.mesh" ]
+
+source_file="res://models/wheat.obj"
+dest_files=[ "res://.import/wheat.obj-790fbffea16ea9228388651e69dc6d60.mesh", "res://.import/wheat.obj-790fbffea16ea9228388651e69dc6d60.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true
