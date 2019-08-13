@@ -72,7 +72,7 @@ func _process(delta):
 	to_quat.set_euler(Vector3(0,atan2(look_vec.x, look_vec.z),0))
 
 	from_quat.set_euler(rotation)
-	to_quat = to_quat.normalized().slerp(from_quat.normalized(),rotate_speed*delta)
+	to_quat = to_quat.normalized().slerp(from_quat.normalized(),rotate_speed)
 	rot_vec = to_quat.get_euler()
 	
 	rotation = rot_vec
