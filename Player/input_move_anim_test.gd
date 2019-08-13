@@ -1,46 +1,81 @@
 extends KinematicBody
 
-export(int,0,60) var move_speed = 8 #pixels per second in 60 fps
-export(float,0,1) var rotate_speed = 1 #how fast to lerp between rotation targets
-export(float,0,5) var step_height = .5 #how high to step up before moving horizontally.
-var move_vec = Vector3(0,0,0) #vector that is applied to the KinematicBody
-var look_vec = Vector3(0,0,0) #vector that stores where the player should face between frames
+export(int,0,60) var move_speed = 8 #units per second in 60 fps
+export(float,0,1) var rotate_speed = .85 #how fast to lerp between rotation targets. Higher means longer transition.
+export(float,0,5) var step_height = .5 #how high to step up vertically before moving horizontally. Changes what hill steepness a player can climb.
+var move_vec = Vector3(0,0,0) #local location vector that is applied to the KinematicBody
+var look_vec = Vector3(0,0,1) #local location vector that stores where the player should face between frames
+var rot_vec = Vector3(0,0,0) #Euler rotation vector that stores the rotation to be applied to the player
 var moving = false #if the player is moving this frame. for animation and such
 
-var animControl
+var animControl #animation player reference
+var walk_blend_target = 0
+var walk_blend_speed = .2
+
+var activeCamera #for offsetting movement and rotation with
+export(NodePath) var activeCameraPath
 
 func _ready():
 	print("Move using WASD")
-	var animControl = get_node("./Cubefriend/AnimationTreePlayer")
+	animControl = get_node("./Cubefriend/AnimationTree")
 	animControl.active = true
 	print(animControl)
+	
+	activeCamera = get_node(activeCameraPath)
+	print(activeCamera)
+	
 	pass
+
+#func _physics_process(delta):
+	
 
 func _process(delta):
 	
 	## MOVEMENT
 	
+	#If a movement key is pressed, set the move_vec to indicate directions and report movement
+	
 	moving = false
 	
-	if Input.is_key_pressed(KEY_W):
+	if (Input.is_key_pressed(KEY_W) or (Input.is_key_pressed(KEY_COMMA) or Input.is_key_pressed(KEY_LESS)) or Input.is_key_pressed(KEY_UP)): #up
 		move_vec.z = 1
 		moving = true
-	elif Input.is_key_pressed(KEY_S):
+	elif (Input.is_key_pressed(KEY_S) or Input.is_key_pressed(KEY_O) or Input.is_key_pressed(KEY_DOWN)): #down
 		move_vec.z = -1
 		moving = true
 	else:
 		move_vec.z = 0
-	if Input.is_key_pressed(KEY_A):
+	if (Input.is_key_pressed(KEY_A) or Input.is_key_pressed(KEY_A) or Input.is_key_pressed(KEY_LEFT)): #left
 		move_vec.x = 1
 		moving = true
-	elif Input.is_key_pressed(KEY_D):
+	elif (Input.is_key_pressed(KEY_D) or Input.is_key_pressed(KEY_E) or Input.is_key_pressed(KEY_RIGHT)): #right
 		move_vec.x = -1
 		moving = true
 	else:
 		move_vec.x = 0
 	
-	look_vec = Vector3 ( lerp(look_vec.x,translation.x+(move_vec.x*move_speed),rotate_speed) , translation.y , lerp(look_vec.z,translation.z+(move_vec.z*move_speed),rotate_speed) )
-	if (look_vec != translation): look_at(look_vec,Vector3(0,1,0))
+	#Normalize vector then adjust angle with camera rotation
+	
+	if (moving == true):
+		move_vec = move_vec.normalized()
+		look_vec = move_vec.rotated(Vector3.UP,activeCamera.rotation.y)
+		move_vec = move_vec.rotated(Vector3.UP,activeCamera.rotation.y-PI)
+	
+	##ROTATION
+	
+	#Rotating the model according to calculated movement
+	#If moving, calculate the target and current y axis rotation and slerp using a temp Quat conversion
+	
+	var to_quat = Quat() # declaring quat ...
+	var from_quat = Quat()
+	
+	to_quat.set_euler(Vector3(0,atan2(look_vec.x, look_vec.z),0))
+
+	from_quat.set_euler(rotation)
+	to_quat = to_quat.normalized().slerp(from_quat.normalized(),rotate_speed*delta)
+	rot_vec = to_quat.get_euler()
+	
+	rotation = rot_vec
 	
 	if (moving == true):
 		move_and_collide(Vector3 (0 , step_height , 0))
@@ -49,23 +84,17 @@ func _process(delta):
 	
 	## ANIMATION
 	
-	#var animControl = get_node("Cubefriend/AnimationTreePlayer") #scope problem needs to be fixed so this doesn't need to be called every frame
-	#print(animControl)
-	
 	if (animControl != null):
 		
 		if moving:
-			animControl.blend2_node_set_amount("walk_blend",1)
+			walk_blend_target = 1
 		else:
-			animControl.blend2_node_set_amount("walk_blend",0)
+			walk_blend_target = 0
+		
+		animControl["parameters/walk_blend/blend_amount"] = lerp(animControl["parameters/walk_blend/blend_amount"],walk_blend_target,walk_blend_speed)
 		
 		if Input.is_key_pressed(KEY_E):
-			animControl.oneshot_node_start("interact_moving_trigger")
-		
-		##print(animControl,animControl.active,animControl.blend2_node_get_amount("walk_blend"))
+			animControl["parameters/interact_trigger/active"] = 1
 		
 	
 	pass
-
-
-

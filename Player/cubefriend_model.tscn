@@ -1,79 +1,55 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Player/cubefriend.dae" type="PackedScene" id=1]
 
-[node name="Cubefriend" index="0" instance=ExtResource( 1 )]
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "cubefriend_interact"
 
-transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, 0, 0, 0 )
-_sections_unfolded = [ "Transform" ]
+[sub_resource type="AnimationNodeTimeScale" id=2]
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "cubefriend_idle-loop"
+
+[sub_resource type="AnimationNodeOneShot" id=4]
+filter_enabled = true
+filters = [ "Cubefriend_Rig/Skeleton:arm.L", "Cubefriend_Rig/Skeleton:arm.R", "Cubefriend_Rig/Skeleton:head" ]
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "cubefriend_walk-loop"
+
+[sub_resource type="AnimationNodeBlend2" id=6]
+
+[sub_resource type="AnimationNodeBlendTree" id=7]
+graph_offset = Vector2( 232.782, 33 )
+"nodes/Animation 3/node" = SubResource( 1 )
+"nodes/Animation 3/position" = Vector2( 420, 280 )
+nodes/TimeScale/node = SubResource( 2 )
+nodes/TimeScale/position = Vector2( 520, 80 )
+nodes/idle/node = SubResource( 3 )
+nodes/idle/position = Vector2( 40, 80 )
+nodes/interact_trigger/node = SubResource( 4 )
+nodes/interact_trigger/position = Vector2( 700, 120 )
+nodes/output/position = Vector2( 900, 160 )
+nodes/walk/node = SubResource( 5 )
+nodes/walk/position = Vector2( 40, 200 )
+nodes/walk_blend/node = SubResource( 6 )
+nodes/walk_blend/position = Vector2( 320, 80 )
+node_connections = [ "output", 0, "interact_trigger", "walk_blend", 0, "idle", "walk_blend", 1, "walk", "TimeScale", 0, "walk_blend", "interact_trigger", 0, "TimeScale", "interact_trigger", 1, "Animation 3" ]
+
+[node name="Cubefriend" index="0" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
 
 [node name="Cubefriend_Rig" parent="." index="0"]
+transform = Transform( 1.78814e-07, 1, 0, -1, 1.78814e-07, 0, 0, 0, 1, 0, 0, 0 )
 
-transform = Transform( 1.94707e-007, 1, 0, -1, 1.94707e-007, 0, 0, 0, 1, 0, 0, 0 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="AnimationTreePlayer" type="AnimationTreePlayer" parent="." index="1"]
-
-playback_process_mode = 1
-master_player = NodePath("../AnimationPlayer")
-base_path = NodePath("..")
-active = true
-data = {
-"active": true,
-"connections": [ "walk_blend", "scale", 0, "interact_moving_trigger", "out", 0, "idle_anim", "walk_blend", 0, "walk_anim", "walk_blend", 1, "scale", "interact_moving_trigger", 0, "interact_anim", "interact_moving_trigger", 1 ],
-"master": NodePath("../AnimationPlayer"),
-"nodes": [ {
-"id": "scale",
-"position": Vector2( 510, 122 ),
-"scale": 1.0,
-"type": "timescale"
-}, {
-"id": "out",
-"position": Vector2( 1021, 96 ),
-"type": "output"
-}, {
-"filter": [  ],
-"from": "cubefriend_walk-loop",
-"id": "walk_anim",
-"position": Vector2( 140, 216 ),
-"type": "animation"
-}, {
-"blend": 0.0,
-"filter": [  ],
-"id": "walk_blend",
-"position": Vector2( 329, 93 ),
-"type": "blend2"
-}, {
-"filter": [  ],
-"from": "cubefriend_interact",
-"id": "interact_anim",
-"position": Vector2( 447, 305 ),
-"type": "animation"
-}, {
-"filter": [  ],
-"from": "cubefriend_idle-loop",
-"id": "idle_anim",
-"position": Vector2( 132, 94 ),
-"type": "animation"
-}, {
-"autorestart": true,
-"autorestart_delay": 1.0,
-"autorestart_random_delay": 0.807843,
-"fade_in": 0.25,
-"fade_out": 0.15,
-"filter": [ NodePath("Cubefriend_Rig/Skeleton:body"), NodePath("Cubefriend_Rig/Skeleton:leg.R"), NodePath("Cubefriend_Rig/Skeleton:leg.L") ],
-"id": "interact_moving_trigger",
-"mix": false,
-"position": Vector2( 696, 154 ),
-"type": "oneshot"
-} ]
-}
-_sections_unfolded = [ "Playback" ]
-
-[node name="AnimationPlayer" parent="." index="2"]
-
+[node name="AnimationPlayer" parent="." index="1"]
 autoplay = "cubefriend_idle-loop"
 playback_default_blend_time = 0.25
-_sections_unfolded = [ "Playback Options" ]
 
-
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = SubResource( 7 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/TimeScale/scale = 1.0
+parameters/interact_trigger/active = false
+parameters/walk_blend/blend_amount = 1.0
