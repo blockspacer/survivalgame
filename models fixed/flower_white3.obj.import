@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/flower_white3.obj-4ea291dd578d413418ff8083ba78df17.mesh"
+
+[deps]
+
+files=[ "res://.import/flower_white3.obj-4ea291dd578d413418ff8083ba78df17.mesh" ]
+
+source_file="res://models fixed/flower_white3.obj"
+dest_files=[ "res://.import/flower_white3.obj-4ea291dd578d413418ff8083ba78df17.mesh", "res://.import/flower_white3.obj-4ea291dd578d413418ff8083ba78df17.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true

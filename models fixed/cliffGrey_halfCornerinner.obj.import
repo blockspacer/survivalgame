@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/cliffGrey_halfCornerinner.obj-bdc128ede2244d4acd9069ed6d0914d9.mesh"
+
+[deps]
+
+files=[ "res://.import/cliffGrey_halfCornerinner.obj-bdc128ede2244d4acd9069ed6d0914d9.mesh" ]
+
+source_file="res://models fixed/cliffGrey_halfCornerinner.obj"
+dest_files=[ "res://.import/cliffGrey_halfCornerinner.obj-bdc128ede2244d4acd9069ed6d0914d9.mesh", "res://.import/cliffGrey_halfCornerinner.obj-bdc128ede2244d4acd9069ed6d0914d9.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true
