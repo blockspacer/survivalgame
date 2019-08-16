@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/plant_bushLarge.obj-4d9465a5e57718174bbf9e5aaa3a8263.mesh"
+
+[deps]
+
+files=[ "res://.import/plant_bushLarge.obj-4d9465a5e57718174bbf9e5aaa3a8263.mesh" ]
+
+source_file="res://models fixed/foliage/plant_bushLarge.obj"
+dest_files=[ "res://.import/plant_bushLarge.obj-4d9465a5e57718174bbf9e5aaa3a8263.mesh", "res://.import/plant_bushLarge.obj-4d9465a5e57718174bbf9e5aaa3a8263.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true

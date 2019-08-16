@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/pumpkin.obj-820db2fab31b813cb2e848a7fd46c2fe.mesh"
+
+[deps]
+
+files=[ "res://.import/pumpkin.obj-820db2fab31b813cb2e848a7fd46c2fe.mesh" ]
+
+source_file="res://models fixed/foliage/pumpkin.obj"
+dest_files=[ "res://.import/pumpkin.obj-820db2fab31b813cb2e848a7fd46c2fe.mesh", "res://.import/pumpkin.obj-820db2fab31b813cb2e848a7fd46c2fe.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true

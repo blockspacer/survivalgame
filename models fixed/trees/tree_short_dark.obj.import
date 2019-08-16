@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/tree_short_dark.obj-3528bb076b969e6d4cfeb537465bdc85.mesh"
+
+[deps]
+
+files=[ "res://.import/tree_short_dark.obj-3528bb076b969e6d4cfeb537465bdc85.mesh" ]
+
+source_file="res://models fixed/trees/tree_short_dark.obj"
+dest_files=[ "res://.import/tree_short_dark.obj-3528bb076b969e6d4cfeb537465bdc85.mesh", "res://.import/tree_short_dark.obj-3528bb076b969e6d4cfeb537465bdc85.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true

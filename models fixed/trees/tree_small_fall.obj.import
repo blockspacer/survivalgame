@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/tree_small_fall.obj-b8e2f452d3a1063024a244ef30fcd64a.mesh"
+
+[deps]
+
+files=[ "res://.import/tree_small_fall.obj-b8e2f452d3a1063024a244ef30fcd64a.mesh" ]
+
+source_file="res://models fixed/trees/tree_small_fall.obj"
+dest_files=[ "res://.import/tree_small_fall.obj-b8e2f452d3a1063024a244ef30fcd64a.mesh", "res://.import/tree_small_fall.obj-b8e2f452d3a1063024a244ef30fcd64a.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true

@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/tree_plateau_fall.obj-f4dde583ccd11c476fca0bc31e77636d.mesh"
+
+[deps]
+
+files=[ "res://.import/tree_plateau_fall.obj-f4dde583ccd11c476fca0bc31e77636d.mesh" ]
+
+source_file="res://models fixed/trees/tree_plateau_fall.obj"
+dest_files=[ "res://.import/tree_plateau_fall.obj-f4dde583ccd11c476fca0bc31e77636d.mesh", "res://.import/tree_plateau_fall.obj-f4dde583ccd11c476fca0bc31e77636d.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true

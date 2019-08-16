@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/cactus_large.obj-b182b341d07d2718a7cc64804ce4956f.mesh"
+
+[deps]
+
+files=[ "res://.import/cactus_large.obj-b182b341d07d2718a7cc64804ce4956f.mesh" ]
+
+source_file="res://models fixed/foliage/cactus_large.obj"
+dest_files=[ "res://.import/cactus_large.obj-b182b341d07d2718a7cc64804ce4956f.mesh", "res://.import/cactus_large.obj-b182b341d07d2718a7cc64804ce4956f.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true

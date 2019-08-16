@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/cliffGrey_block.obj-c714ba3d4add69f5bcad4f2017fae36a.mesh"
+
+[deps]
+
+files=[ "res://.import/cliffGrey_block.obj-c714ba3d4add69f5bcad4f2017fae36a.mesh" ]
+
+source_file="res://models fixed/cliffGrey/cliffGrey_block.obj"
+dest_files=[ "res://.import/cliffGrey_block.obj-c714ba3d4add69f5bcad4f2017fae36a.mesh", "res://.import/cliffGrey_block.obj-c714ba3d4add69f5bcad4f2017fae36a.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true

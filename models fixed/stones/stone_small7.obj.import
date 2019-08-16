@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/stone_small7.obj-059ef8528ea93bae4f074de2d75894c3.mesh"
+
+[deps]
+
+files=[ "res://.import/stone_small7.obj-059ef8528ea93bae4f074de2d75894c3.mesh" ]
+
+source_file="res://models fixed/stones/stone_small7.obj"
+dest_files=[ "res://.import/stone_small7.obj-059ef8528ea93bae4f074de2d75894c3.mesh", "res://.import/stone_small7.obj-059ef8528ea93bae4f074de2d75894c3.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true

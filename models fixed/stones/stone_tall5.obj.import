@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/stone_tall5.obj-aca21168788553dc00999a0e8245f041.mesh"
+
+[deps]
+
+files=[ "res://.import/stone_tall5.obj-aca21168788553dc00999a0e8245f041.mesh" ]
+
+source_file="res://models fixed/stones/stone_tall5.obj"
+dest_files=[ "res://.import/stone_tall5.obj-aca21168788553dc00999a0e8245f041.mesh", "res://.import/stone_tall5.obj-aca21168788553dc00999a0e8245f041.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true
