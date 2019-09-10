@@ -34,18 +34,30 @@ func _ready():
 func _process(delta):
 	
 	#Get camera buttons
-	if (Input.is_key_pressed(KEY_APOSTROPHE) && !(Input.is_key_pressed(KEY_PERIOD))): #rotate negative
+	if Input.is_action_pressed("camera_rotate_left"): #rotate negative
+		RotationSpeed = Input.get_action_strength("camera_rotate_left")
 		if (Angle.y-RotationSpeed<-180):
 			Angle.y = 180+(Angle.y-RotationSpeed+180)
 		else:
 			Angle.y = Angle.y - RotationSpeed
 		print(Angle.y)
-	if (Input.is_key_pressed(KEY_PERIOD) && !(Input.is_key_pressed(KEY_APOSTROPHE))): #rotate negative
+	if Input.is_action_pressed("camera_rotate_right"): #rotate negative
+		RotationSpeed = Input.get_action_strength("camera_rotate_right")
 		if (Angle.y+RotationSpeed>180):
 			Angle.y = -180+(Angle.y+RotationSpeed-180)
 		else:
 			Angle.y = Angle.y + RotationSpeed
 		print(Angle.y)
+	
+	if Input.is_action_pressed("camera_rotate_up"):
+		Distance -= Input.get_action_strength("camera_rotate_up")
+	if Input.is_action_pressed("camera_rotate_down"):
+		Distance += Input.get_action_strength("camera_rotate_down")
+	
+	Distance = clamp(Distance, 8, 50) #distance starts at 30
+	Offset.y = Distance*(2.0/3.0)+2 #offset starts at 22
+	
+	print(Distance ," - ", Offset.y)
 	
 	if (followPoint!=null):
 		moveCamera(Distance,Angle,followPoint.translation+Offset)

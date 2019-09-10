@@ -5,36 +5,36 @@
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "cubefriend_interact"
 
-[sub_resource type="AnimationNodeTimeScale" id=2]
-
-[sub_resource type="AnimationNodeAnimation" id=3]
+[sub_resource type="AnimationNodeAnimation" id=2]
 animation = "cubefriend_idle-loop"
 
-[sub_resource type="AnimationNodeOneShot" id=4]
+[sub_resource type="AnimationNodeOneShot" id=3]
 filter_enabled = true
 filters = [ "Cubefriend_Rig/Skeleton:arm.L", "Cubefriend_Rig/Skeleton:arm.R", "Cubefriend_Rig/Skeleton:head" ]
 
-[sub_resource type="AnimationNodeAnimation" id=5]
+[sub_resource type="AnimationNodeAnimation" id=4]
 animation = "cubefriend_walk-loop"
 
-[sub_resource type="AnimationNodeBlend2" id=6]
+[sub_resource type="AnimationNodeBlend2" id=5]
+
+[sub_resource type="AnimationNodeTimeScale" id=6]
 
 [sub_resource type="AnimationNodeBlendTree" id=7]
-graph_offset = Vector2( 232.782, 33 )
+graph_offset = Vector2( -136, 78 )
 "nodes/Animation 3/node" = SubResource( 1 )
 "nodes/Animation 3/position" = Vector2( 420, 280 )
-nodes/TimeScale/node = SubResource( 2 )
-nodes/TimeScale/position = Vector2( 520, 80 )
-nodes/idle/node = SubResource( 3 )
-nodes/idle/position = Vector2( 40, 80 )
-nodes/interact_trigger/node = SubResource( 4 )
+nodes/idle/node = SubResource( 2 )
+nodes/idle/position = Vector2( 180, 80 )
+nodes/interact_trigger/node = SubResource( 3 )
 nodes/interact_trigger/position = Vector2( 700, 120 )
 nodes/output/position = Vector2( 900, 160 )
-nodes/walk/node = SubResource( 5 )
-nodes/walk/position = Vector2( 40, 200 )
-nodes/walk_blend/node = SubResource( 6 )
-nodes/walk_blend/position = Vector2( 320, 80 )
-node_connections = [ "output", 0, "interact_trigger", "walk_blend", 0, "idle", "walk_blend", 1, "walk", "TimeScale", 0, "walk_blend", "interact_trigger", 0, "TimeScale", "interact_trigger", 1, "Animation 3" ]
+nodes/walk/node = SubResource( 4 )
+nodes/walk/position = Vector2( -40, 220 )
+nodes/walk_blend/node = SubResource( 5 )
+nodes/walk_blend/position = Vector2( 480, 80 )
+nodes/walk_timescale/node = SubResource( 6 )
+nodes/walk_timescale/position = Vector2( 220, 220 )
+node_connections = [ "output", 0, "interact_trigger", "walk_timescale", 0, "walk", "interact_trigger", 0, "walk_blend", "interact_trigger", 1, "Animation 3", "walk_blend", 0, "idle", "walk_blend", 1, "walk_timescale" ]
 
 [node name="Cubefriend" index="0" instance=ExtResource( 1 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0 )
@@ -50,6 +50,6 @@ playback_default_blend_time = 0.25
 tree_root = SubResource( 7 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/TimeScale/scale = 1.0
 parameters/interact_trigger/active = false
 parameters/walk_blend/blend_amount = 1.0
+parameters/walk_timescale/scale = 1.0
