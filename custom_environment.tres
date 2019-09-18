@@ -1,0 +1,19 @@
+[gd_resource type="Environment" load_steps=2 format=2]
+
+[sub_resource type="PanoramaSky" id=1]
+resource_local_to_scene = true
+
+[resource]
+resource_local_to_scene = true
+background_mode = 2
+background_sky = SubResource( 1 )
+background_color = Color( 0.592157, 0.988235, 0.941176, 1 )
+ambient_light_color = Color( 0.996078, 1, 0.854902, 1 )
+ssao_enabled = true
+ssao_radius2 = 1.0
+ssao_color = Color( 0.184314, 0, 0.372549, 1 )
+ssao_blur = 1
+ssao_edge_sharpness = 10.0
+dof_blur_far_distance = 100.0
+dof_blur_far_quality = 0
+dof_blur_near_quality = 0

@@ -1,5 +1,7 @@
 extends KinematicBody
 
+export(Color) var color = Color(.8,.2,.4)
+
 export(int,0,60) var move_speed = 8 #units per second in 60 fps
 export(float,0,1) var rotate_speed = .85 #how fast to lerp between rotation targets. Higher means longer transition.
 export(float,0,5) var step_height = .5 #how high to step up vertically before moving horizontally. Changes what hill steepness a player can climb.
@@ -25,6 +27,9 @@ func _ready():
 	animControl.active = true
 	print(animControl)
 	
+	#if animControl!=null:
+		#get_node("./Cubefriend/Cubefriend_Rig/Skeleton/Cubefriend").get_surface_material(1).albedo_color = color
+	
 	activeCamera = get_node(activeCameraPath)
 	print(activeCamera)
 	
@@ -42,8 +47,8 @@ func _process(delta):
 	
 	#If a movement key is pressed, set the move_vec to indicate directions and report movement
 	
-	if Input.is_action_just_pressed("interact"):
-		print("yeah")
+#	if Input.is_action_just_pressed("interact"):
+#		print("yeah")
 	
 	running = false
 	
@@ -95,11 +100,15 @@ func _process(delta):
 	rotation = rot_vec
 	
 	if (moving == true):
+# warning-ignore:return_value_discarded
 		move_and_collide(Vector3 (0 , step_height , 0))
 		if running==true:
+# warning-ignore:return_value_discarded
 			move_and_collide(move_vec * move_speed*2 * delta)
 		elif running==false:
+# warning-ignore:return_value_discarded
 			move_and_collide(move_vec * move_speed * delta)
+# warning-ignore:return_value_discarded
 		move_and_collide(Vector3 (0 , -(step_height*2) , 0))
 	
 	## ANIMATION
