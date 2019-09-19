@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/milkywaypan_brunier_2048 2.png-e0d1bb9011b227540d8092bd97a24c40.stex"
+path="res://.import/milkywaypan_brunier_2048 2.png-c809dcffe92c8d2184ed4d21d0b97455.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/Sky/milkywaypan_brunier_2048 2.png"
-dest_files=[ "res://.import/milkywaypan_brunier_2048 2.png-e0d1bb9011b227540d8092bd97a24c40.stex" ]
+source_file="res://addons/MIX/milkywaypan_brunier_2048 2.png"
+dest_files=[ "res://.import/milkywaypan_brunier_2048 2.png-c809dcffe92c8d2184ed4d21d0b97455.stex" ]
 
 [params]
 

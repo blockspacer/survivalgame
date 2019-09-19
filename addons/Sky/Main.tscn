@@ -1,12 +1,13 @@
 [gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://addons/Sky/Main.gd" type="Script" id=1]
+[ext_resource path="res://addons/MIX/Main.gd" type="Script" id=1]
 [ext_resource path="res://models fixed/Materials/leavesGreen.tres" type="Material" id=2]
 [ext_resource path="res://models fixed/Materials/stone.tres" type="Material" id=3]
 [ext_resource path="res://custom_environment.tres" type="Environment" id=4]
 [ext_resource path="res://scripts/cameracontrol.gd" type="Script" id=5]
-[ext_resource path="res://addons/Sky/sky_texture.tscn" type="PackedScene" id=6]
-[ext_resource path="res://addons/Sky/milkywaypan_brunier_2048 2.png" type="Texture" id=7]
+[ext_resource path="res://addons/MIX/sky_texture.tscn" type="PackedScene" id=6]
+[ext_resource path="res://addons/MIX/milkywaypan_brunier_2048 2.png" type="Texture" id=7]
+
 
 [sub_resource type="PlaneMesh" id=1]
 material = ExtResource( 2 )

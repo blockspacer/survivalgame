@@ -9,8 +9,8 @@ export var sun_position = Vector3(0.0, 1.0, 0.0) setget set_sun_position, get_su
 export (Texture) var night_sky = null setget set_night_sky, get_night_sky
 export (Basis) var rotate_night_sky = Basis() setget set_rotate_night_sky, get_rotate_night_sky
 
-onready var smaterial = $Sky_texture/Skyrender.material
 onready var sview = $Sky_texture
+onready var smaterial = $Sky_texture/Skyrender.material
 onready var cmaterial = $Cloud_texture/Cloudrender.material
 var trigger_count = 0
 
@@ -54,11 +54,16 @@ func set_time_of_day(hours, directional_light, horizontal_angle = 0.0):
 		var t = directional_light.transform
 		t.origin = sun_position
 		directional_light.transform = t.looking_at(Vector3(0.0, 0.0, 0.0), Vector3(0.0, 1.0, 0.0))
-		directional_light.light_energy = 1.0 - clamp(abs(hours - 12.0) / 6.0, 0.0, 1.0)
+		#var light_amount = 1.0 - clamp(abs(hours - 12.0) / 6.0, 0.0, 1.0)
+		var light_amount = clamp( - ((2 - (hours/6) ) * (2 - (hours/6) )) + 1 , 0.0, 1.0)
+		directional_light.light_energy = light_amount
+		cmaterial.set_shader_param("EXPOSURE", light_amount+0.01)
+		print(light_amount)
 	
 	# and update our sky
 	set_sun_position(sun_position)
 
+#For now this function is not used
 func copy_to_environment(environment):
 	# This is a bit of a hack, when the sky texture is assigned to our panorama Godot calculates a few things from the data
 	# This happens just once, and it happens when the texture is assigned to the sky.
@@ -117,3 +122,6 @@ func _on_ThicknessBar_value_changed(value):
 
 func _on_WindBar_value_changed(value):
 	cmaterial.set("shader_param/WIND_SPEED",value)
+	
+func _on_ExposureBar_value_changed(value):
+	cmaterial.set("shader_param/EXPOSURE",value)

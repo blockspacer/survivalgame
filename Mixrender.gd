@@ -16,6 +16,6 @@ func _ready():
 		print(material.get("shader_param/Clouds"))
 
 # warning-ignore:unused_argument
-func _process(delta):
-	pass
+#func _process(delta):
+#	pass
 	

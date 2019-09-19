@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/noise.png-9c2152dee57c7ebb3c852411d0d62891.s3tc.stex"
-path.etc2="res://.import/noise.png-9c2152dee57c7ebb3c852411d0d62891.etc2.stex"
+path.s3tc="res://.import/noise.png-d3216bbcbec3f632c377266c7772f9cb.s3tc.stex"
+path.etc2="res://.import/noise.png-d3216bbcbec3f632c377266c7772f9cb.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://addons/Clouds/noise.png"
-dest_files=[ "res://.import/noise.png-9c2152dee57c7ebb3c852411d0d62891.s3tc.stex", "res://.import/noise.png-9c2152dee57c7ebb3c852411d0d62891.etc2.stex" ]
+source_file="res://addons/MIX/noise.png"
+dest_files=[ "res://.import/noise.png-d3216bbcbec3f632c377266c7772f9cb.s3tc.stex", "res://.import/noise.png-d3216bbcbec3f632c377266c7772f9cb.etc2.stex" ]
 
 [params]
 

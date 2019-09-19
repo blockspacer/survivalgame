@@ -1,6 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://addons/Sky/sky_render.shader" type="Shader" id=1]
+[ext_resource path="res://addons/MIX/sky_render.shader" type="Shader" id=1]
+
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )

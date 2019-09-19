@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-// USING https://www.shadertoy.com/view/XtBXDw (base on it)
+// USING https://www.shadertoy.com/view/XtBXDw (based on it)
 
 uniform float iTime;
 uniform int iFrame;
@@ -9,6 +9,8 @@ uniform float COVERAGE :hint_range(0,1); //0.5
 uniform float THICKNESS :hint_range(0,100); //25.
 uniform float ABSORPTION :hint_range(0,10); //1.030725
 uniform int STEPS :hint_range(0,100); //25
+
+uniform float EXPOSURE :hint_range(0.,1.);
 
 uniform vec3 WIND_VEC = vec3(0.01, 0.00, 0.01); // :hint_range(0,100); //25
 uniform float WIND_SPEED : hint_range(0,3); // 1.3 for now
@@ -112,7 +114,9 @@ vec4 render_clouds(vec3 ro,vec3 rd){
             pos += dir_step;
             if (length(pos) > 1e3) break;
         }
-        
+		
+		C *= EXPOSURE;
+		
         return vec4(C, alpha);
     }
     return vec4(C, alpha);
@@ -167,29 +171,32 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord, in vec2 iResolution){
 
     panorama_uv(fragCoord,ro,rd,iResolution);
     
-    //vec3 sky = render_sky_color(rd);
-	vec3 sky = vec3(0.);
+    vec3 sky = render_sky_color(rd); //for sky is gradient
+	//vec3 sky = vec3(0.); //for sky is black
     vec4 cld = vec4(0.);
 	float skyPow = dot(rd, vec3(0.0, -1.0, 0.0));
     float horizonPow =1.-pow(1.0-abs(skyPow), 5.0);
     if(rd.y>0.){
 		cld=render_clouds(ro,rd);
 		cld=clamp(cld,vec4(0.),vec4(1.));
-		cld.rgb+=0.04*cld.rgb*horizonPow;
+		cld.rgb+=0.04*cld.rgb*horizonPow; //0.04
 		cld*=clamp((  1.0 - exp(-2.3 * pow(max((0.0), horizonPow), (2.6)))),0.,1.);
 	}
-	/*else{
-    cld.rgb = cube_bot(rd,vec3(1.5,1.49,1.71), vec3(1.1,1.15,1.5));
-    cld*=cld;
-    //cld=clamp(cld,vec4(0.),vec4(1.));
-    cld.a=1.;
-    cld*=clamp((  1.0 - exp(-1.3 * pow(max((0.0), horizonPow), (2.6)))),0.,1.);
-    }
-    col=mix(sky, cld.rgb/(0.0001+cld.a), cld.a);*/
+	/*else{ //This does the extra cloud nonsense on the bottom half that sucks
+	    cld.rgb = cube_bot(rd,vec3(1.5,1.49,1.71), vec3(1.1,1.15,1.5));
+	    cld*=cld;
+	    //cld=clamp(cld,vec4(0.),vec4(1.));
+	    cld.a=1.;
+	    cld*=clamp((  1.0 - exp(-1.3 * pow(max((0.0), horizonPow), (2.6)))),0.,1.);
+    }*/
+    col=mix(sky, cld.rgb/(0.0001+cld.a), cld.a);
+	//col=mix(col, vec3(0.), EXPOSURE); useless
 	//col*=col;
-    //fragColor = vec4(col,1.0);
+    //fragColor = vec4(col, 1.0); //original
+	//fragColor = vec4(col, cld.a); //mine1
+	fragColor = vec4(cld.rgb/(0.0001+cld.a), cld.a); //mine2
 	
-	fragColor = cld;
+	//fragColor = vec4(sky, 1.); //testing for sky
 	
 }
 

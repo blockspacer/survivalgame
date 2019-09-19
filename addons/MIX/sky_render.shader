@@ -177,7 +177,7 @@ void fragment() {
 	);
 	
 	// Apply exposure.
-	//color = 1.0 - exp(-1.0 * color);
+	//color = 1.0 - exp(-1.0 * color); //Makes night sky too bright and gross looking so off for now
 	
 	// Mix in night sky (already sRGB)
 	if (dir.y > 0.0) {
@@ -189,7 +189,7 @@ void fragment() {
 	}
 	
 	vec3 gray = vec3(dot(vec3(0.2126,0.7152,0.0722), color));
-	vec3 colorfinal = clamp( vec3(mix(color, gray, -saturate)) , 0., 1.);
+	vec3 colorfinal = clamp( vec3(mix(color, gray, -saturate)) , 0., 1.); //This makes the skybox more saturated (it looks a little wonky if you turn it up too high)
 	
 	COLOR = vec4(colorfinal, 1.0);
 }
