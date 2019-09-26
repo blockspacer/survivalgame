@@ -5,10 +5,10 @@ onready var skytexture = get_node(skypath)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(skytexture)
+#	prints("sky_viewporttexture", skytexture)
 	if skytexture:
 		texture = skytexture.get_viewport().get_texture()
-		print(texture)
+#		prints("sky_viewporttexture", texture)
 
 # warning-ignore:unused_argument
 #func _process(delta):

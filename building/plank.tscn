@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://building/wood/RoughWood.tres" type="Material" id=1]
+[ext_resource path="res://building/plank.gd" type="Script" id=2]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 0.25, 4, 0.5 )
+subdivide_height = 7
+
+[node name="Plank_2x4_4" type="MeshInstance"]
+material_override = ExtResource( 1 )
+mesh = SubResource( 1 )
+material/0 = null
+script = ExtResource( 2 )

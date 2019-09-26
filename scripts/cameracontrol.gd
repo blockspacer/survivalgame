@@ -4,9 +4,9 @@ extends Camera
 #var defaultOffset = Vector3(0,20,0)
 #var defaultDistance = 30
 
-var Distance = 30
-var Angle = Vector3(-20,0,0)
-var Offset = Vector3(0,20,0)
+var Distance = 20
+var Angle = Vector3(-30,0,0)
+var Offset = Vector3(0,15.25,0)
 
 var RotationSpeed = 1
 
@@ -22,18 +22,20 @@ func moveCamera(length,angle,offset):
 	
 	pass
 
-#onready var sky_b=get_tree().get_root().get_node("Spatial/Sky_texture")
-onready var sky_b=get_tree().get_root().get_node("scene/Skybox")
+onready var skybox=get_node("../Skybox")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
-	var iChannel=sky_b.get_viewport().get_texture()
-	self.environment=load("res://custom_environment.tres") as Environment
+	assert(skybox!=null)
+	var iChannel=skybox.get_viewport().get_texture()
+	#self.environment=load("res://custom_environment.tres") as Environment
 	self.environment.background_sky.set_panorama(iChannel)
 	
 	followPoint = get_node(followPointPath)
-	print(followPoint)
+	prints("cameracontrol", followPoint)
+	
+	Offset.y = Distance*(2.0/3.0)+2
+	Angle.x = pow(2,Distance/8) -32
 	
 	pass # Replace with function body.
 
@@ -48,28 +50,27 @@ func _process(delta):
 			Angle.y = 180+(Angle.y-RotationSpeed+180)
 		else:
 			Angle.y = Angle.y - RotationSpeed
-		#print(Angle.y)
+		#prints("cameracontrol", Angle.y)
 	if Input.is_action_pressed("camera_rotate_right"): #rotate negative
 		RotationSpeed = Input.get_action_strength("camera_rotate_right")
 		if (Angle.y+RotationSpeed>180):
 			Angle.y = -180+(Angle.y+RotationSpeed-180)
 		else:
 			Angle.y = Angle.y + RotationSpeed
-		#print(Angle.y)
+		#prints("cameracontrol", Angle.y)
 	
 	if Input.is_action_pressed("camera_rotate_up"):
-		Distance -= Input.get_action_strength("camera_rotate_up")/2
-		Angle.x -= Input.get_action_strength("camera_rotate_up")
+		Distance -= Input.get_action_strength("camera_rotate_up")/3 #this 3 should be a sensitivity variable later
 	if Input.is_action_pressed("camera_rotate_down"):
-		Distance += Input.get_action_strength("camera_rotate_down")/2
-		Angle.x += Input.get_action_strength("camera_rotate_down")
+		Distance += Input.get_action_strength("camera_rotate_down")/3
 	
-	Angle.x = clamp(Angle.x,-40,30)
+	#Angle.x = clamp(Angle.x,-30,30)
+	Distance = clamp(Distance, 8, 50) #distance starts at 20
+	Offset.y = Distance*(2.0/3.0)+2 #offset starts at 15.333
+	#Angle.x = (2.5*Distance)-50 #linear
+	Angle.x = pow(2,Distance/8) -32
 	
-	Distance = clamp(Distance, 8, 50) #distance starts at 30
-	Offset.y = Distance*(2.0/3.0)+2 #offset starts at 22
-	
-	#print(Distance ," - ", Offset.y, " - ", Angle.x)
+	#prints("cameracontrol", Distance, Offset.y, Angle.x)
 	
 	if (followPoint!=null):
 		moveCamera(Distance,Angle,followPoint.translation+Offset)

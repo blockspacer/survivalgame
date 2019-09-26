@@ -24,22 +24,20 @@ export(NodePath) var activeCameraPath
 func _ready():
 	print("Move using WASD")
 	animControl = get_node("./Cubefriend/AnimationTree")
+	assert(animControl!=null)
 	animControl.active = true
-	print(animControl)
 	
 	#if animControl!=null:
 		#get_node("./Cubefriend/Cubefriend_Rig/Skeleton/Cubefriend").get_surface_material(1).albedo_color = color
-	
 	activeCamera = get_node(activeCameraPath)
-	print(activeCamera)
+	assert(activeCamera!=null)
 	
 	pass
 
 #func _physics_process(delta):
-	
-
+#	pass
 #func _input(event):
-	#pass
+#	pass
 
 func _process(delta):
 	

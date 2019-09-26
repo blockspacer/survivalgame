@@ -54,11 +54,12 @@ func set_time_of_day(hours, directional_light, horizontal_angle = 0.0):
 		var t = directional_light.transform
 		t.origin = sun_position
 		directional_light.transform = t.looking_at(Vector3(0.0, 0.0, 0.0), Vector3(0.0, 1.0, 0.0))
-		#var light_amount = 1.0 - clamp(abs(hours - 12.0) / 6.0, 0.0, 1.0)
-		var light_amount = clamp( - ((2 - (hours/6) ) * (2 - (hours/6) )) + 1 , 0.0, 1.0)
+		#var light_amount = 1.0 - clamp(abs(hours - 12.0) / 6.0, 0.0, 1.0) #linear
+		#var light_amount = clamp( - ((2 - (hours/6) ) * (2 - (hours/6) )) + 1 , 0.0, 1.0) #parabola
+		var light_amount = clamp( ( (.66) * sin( (hours/3) + 3.85 ) ) + (.33), 0.0, 1.0) #sinusodial
 		directional_light.light_energy = light_amount
 		cmaterial.set_shader_param("EXPOSURE", light_amount+0.01)
-		print(light_amount)
+		#print(light_amount)
 	
 	# and update our sky
 	set_sun_position(sun_position)
